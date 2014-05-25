@@ -42,6 +42,7 @@ res.json(req.session.allquery);
 
 app.post('/api/queryhistory', function(req, res) {
 	// var value = "P" + updateCount();
+	if(req.session.allquery){
     if(req.session.allquery.length > 9)
     {
 var oldhistory = req.session.allquery;
@@ -49,6 +50,7 @@ req.session.allquery = [];
 
 req.session.allquery =  deleteHistory(oldhistory,req);
     }
+}
 
     var value = "Q" + updateQueryCount(req);
 	req.session.allquery.push({text:req.body.text, value:value });
